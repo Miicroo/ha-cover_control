@@ -65,6 +65,8 @@ cover_control:
 | data   | string | **Required** | The payload of the event. Matches `data.event` of an event in HomeAssistant
 
 
+## Examples
+
 ### Sensor containing position of cover
 ~~~
 - platform: template
@@ -74,8 +76,6 @@ cover_control:
       unit_of_measurement: "percent"
       value_template: "{{ state_attr('cover.my_cover_id_here', 'current_position') }}"
 ~~~
-
-## Examples
 
 ### Multiple covers connected to the same remote
 ~~~
