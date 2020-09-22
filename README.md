@@ -4,7 +4,7 @@ Virtual control for covers in HomeAssistant!
 ![Cover control](assets/remote.svg)
 
 ## Why would I need this?
-When I bought my first IKEA Fyrtur I quickly realized that the cover is a lot longer than my window, thus open (100%) and closed (0%) would make it almost touch the floor or ceiling. To mitigate this I connected the Fyrtur to HomeAssistant through DeConz, started writing automations, configured input_booleans for different motions, states showing new open/closed values etc. I finally ended up with 11 new entities which had to be kept up to date ([here is the original set up](Cover-control-in-native-HA.md). To keep my HomeAssistant system a bit slimmer I decided to write this as a custom component, and here we are!
+When I bought my first IKEA Fyrtur I quickly realized that the cover is a lot longer than my window, thus open (100%) and closed (0%) would make it almost touch the floor or ceiling. To mitigate this I connected the Fyrtur to HomeAssistant through DeConz, started writing automations, configured input_booleans for different motions, states showing new open/closed values etc. I finally ended up with 11 new entities which had to be kept up to date ([here is the original set up](Cover%20control%20in%20native%20HA.md)). To keep my HomeAssistant system a bit slimmer I decided to write this as a custom component, and here we are!
 
 ## What does it do?!
 Cover control is a virtual cover remote, but powered with all the features of HomeAssistant!
