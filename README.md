@@ -1,8 +1,10 @@
 # ha-cover_control
 Virtual control for covers in HomeAssistant!
+
 ![Cover control](assets/remote.svg)
 
-When I bought my first IKEA Fyrtur I quickly realized that the cover is a lot longer than my window, thus open (100%) and closed (0%) would make it almost touch the floor or ceiling. To mitigate this I connected the Fyrtur to HomeAssistant through DeConz, started writing automations, configured input_booleans for different motions, states showing new open/closed values etc. I finally ended up with 11 new entities which had to be kept up to date ([here is the original set up](Cover-control-in-native-HA.md)). To keep my HomeAssistant system a bit slimmer I decided to write this as a custom component, and here we are!
+## Why would I need this?
+When I bought my first IKEA Fyrtur I quickly realized that the cover is a lot longer than my window, thus open (100%) and closed (0%) would make it almost touch the floor or ceiling. To mitigate this I connected the Fyrtur to HomeAssistant through DeConz, started writing automations, configured input_booleans for different motions, states showing new open/closed values etc. I finally ended up with 11 new entities which had to be kept up to date ([here is the original set up](Cover-control-in-native-HA.md). To keep my HomeAssistant system a bit slimmer I decided to write this as a custom component, and here we are!
 
 ## What does it do?!
 Cover control is a virtual cover remote, but powered with all the features of HomeAssistant!
@@ -48,7 +50,7 @@ cover_control:
 | ----           | ----                    | -------             | -----------
 | name           | string                  | The id of the cover | Friendly name
 | cover          | entity_id               | **Required**        | The entity_id of an existing cover
-| cover_position | entity_id               | **Required**        | The entity_id of an existing sensor whose state is the current position of the cover. See example below
+| cover_position | entity_id               | **Required**        | The entity_id of an existing sensor whose state is the current position of the cover. [See example below](#sensor-containing-position-of-cover)
 | open_at        | int between 0 and 100   | **Required**        | Percentage determining when cover is open
 | closed_at      | int between 0 and 100   | **Required**        | Percentage determining when cover is closed
 | open           | [Event](#event-options) | **Required**        | Event which triggers opening of the cover
@@ -63,7 +65,9 @@ cover_control:
 | data   | string | **Required** | The payload of the event. Matches `data.event` of an event in HomeAssistant
 
 
-### Sensor to show cover position
+## Examples
+
+### Sensor containing position of cover
 ~~~
 - platform: template
   sensors:
@@ -72,8 +76,6 @@ cover_control:
       unit_of_measurement: "percent"
       value_template: "{{ state_attr('cover.my_cover_id_here', 'current_position') }}"
 ~~~
-
-## Examples
 
 ### Multiple covers connected to the same remote
 ~~~
