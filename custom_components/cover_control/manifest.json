@@ -1,0 +1,8 @@
+{
+    "domain": "cover_control",
+    "name": "Cover control",
+    "documentation": "https://github.com/Miicroo/ha-cover_control",
+    "dependencies": [],
+    "codeowners": ["@Miicroo"],
+    "requirements": []
+}
