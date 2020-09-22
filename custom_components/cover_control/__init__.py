@@ -33,6 +33,10 @@ EVENT_TYPE = 'type'
 EVENT_ENTITY = 'entity'
 EVENT_DATA = 'data'
 
+
+SERVICE_OPEN = 'open'
+SERVICE_CLOSE = 'close'
+
 PERCENTAGE_VALIDATION = vol.All(
     vol.Coerce(int), vol.Range(min=0, max=100), msg="invalid percentage, must be int between 0 and 100"
 )
@@ -66,6 +70,10 @@ async def async_setup(hass, config):
 
     component = EntityComponent(_LOGGER, DOMAIN, hass)
     await component.async_add_entities(entities)
+
+    component.async_register_entity_service(SERVICE_OPEN, {}, 'open_cover')
+    component.async_register_entity_service(SERVICE_CLOSE, {}, 'close_cover')
+
     return True
 
 class CoverControlEntity(Entity):
@@ -84,8 +92,8 @@ class CoverControlEntity(Entity):
         close_event = config[CONF_CLOSE_EVENT]
 
         self._listeners = [
-            (open_event, self._open_cover),
-            (close_event, self._close_cover)
+            (open_event, self.open_cover),
+            (close_event, self.close_cover)
         ]
 
         self._set_up_listeners(hass, open_event, close_event)
@@ -155,13 +163,13 @@ class CoverControlEntity(Entity):
     def _is_moving(self):
         return self._last_time_moving + INTERVAL_NEW_POSITION_CONSIDERS_MOVING > time()
 
-    async def _open_cover(self, *_):
+    async def open_cover(self, *_):
         if self._is_moving() and self._is_opening:
             await self._stop_covers()
         else:
             await self._set_position(self._open_at)
 
-    async def _close_cover(self, *_):
+    async def close_cover(self, *_):
         if self._is_moving() and not self._is_opening:
             await self._stop_covers()
         else:
