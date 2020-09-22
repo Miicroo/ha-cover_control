@@ -50,7 +50,7 @@ cover_control:
 | ----           | ----                    | -------             | -----------
 | name           | string                  | The id of the cover | Friendly name
 | cover          | entity_id               | **Required**        | The entity_id of an existing cover
-| cover_position | entity_id               | **Required**        | The entity_id of an existing sensor whose state is the current position of the cover. See example below
+| cover_position | entity_id               | **Required**        | The entity_id of an existing sensor whose state is the current position of the cover. [See example below](#sensor-containing-position-of-cover)
 | open_at        | int between 0 and 100   | **Required**        | Percentage determining when cover is open
 | closed_at      | int between 0 and 100   | **Required**        | Percentage determining when cover is closed
 | open           | [Event](#event-options) | **Required**        | Event which triggers opening of the cover
@@ -65,7 +65,7 @@ cover_control:
 | data   | string | **Required** | The payload of the event. Matches `data.event` of an event in HomeAssistant
 
 
-### Sensor to show cover position
+### Sensor containing position of cover
 ~~~
 - platform: template
   sensors:
