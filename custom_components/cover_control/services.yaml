@@ -1,0 +1,15 @@
+# Describes the format for available cover control services
+
+open:
+  description: Open a cover
+  fields:
+    entity_id:
+      description: Name of the cover to open
+      example: "cover_control.my_cover"
+
+close:
+  description: Close a cover
+  fields:
+    entity_id:
+      description: Name of the cover to close
+      example: "cover_control.my_cover"
