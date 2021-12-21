@@ -142,7 +142,7 @@ class CoverControlEntity(Entity):
         return False
 
     @property
-    def device_state_attributes(self):
+    def extra_state_attributes(self):
         return {
             CONF_OPEN: str(self._open_at),
             CONF_CLOSED: str(self._closed_at),
