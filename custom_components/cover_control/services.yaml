@@ -13,3 +13,10 @@ close:
     entity_id:
       description: Name of the cover to close
       example: "cover_control.my_cover"
+
+reset:
+  description: Resets a cover to top position
+    fields:
+      entity_id:
+        description: Name of the cover to reset
+        example: "cover_control.my_cover"

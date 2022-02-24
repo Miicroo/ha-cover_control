@@ -36,6 +36,7 @@ EVENT_DATA = 'data'
 
 SERVICE_OPEN = 'open'
 SERVICE_CLOSE = 'close'
+SERVICE_RESET = 'reset'
 
 PERCENTAGE_VALIDATION = vol.All(
     vol.Coerce(int), vol.Range(min=0, max=100), msg="invalid percentage, must be int between 0 and 100"
@@ -73,6 +74,7 @@ async def async_setup(hass, config):
 
     component.async_register_entity_service(SERVICE_OPEN, {}, 'open_cover')
     component.async_register_entity_service(SERVICE_CLOSE, {}, 'close_cover')
+    component.async_register_entity_service(SERVICE_RESET, {}, 'reset')
 
     return True
 
@@ -174,6 +176,9 @@ class CoverControlEntity(Entity):
             await self._stop_covers()
         else:
             await self._set_position(self._closed_at)
+
+    async def reset(self, *_):
+        await self._set_position(0)
 
     async def _set_position(self, position):
         await self.hass.services.async_call("cover", "set_cover_position", {ATTR_ENTITY_ID: self._cover, ATTR_SET_POSITION: position})
