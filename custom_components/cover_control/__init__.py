@@ -178,7 +178,7 @@ class CoverControlEntity(Entity):
             await self._set_position(self._closed_at)
 
     async def reset(self, *_):
-        await self._set_position(0)
+        await self._set_position(100)
 
     async def _set_position(self, position):
         await self.hass.services.async_call("cover", "set_cover_position", {ATTR_ENTITY_ID: self._cover, ATTR_SET_POSITION: position})
